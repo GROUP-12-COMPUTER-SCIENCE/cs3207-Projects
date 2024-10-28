@@ -1,0 +1,15 @@
+# test_program.zara
+
+integer count = 10
+float price = 19.99
+string name = "ZaraLang"
+array items = [1, 2, 3, 4]
+stack history = []
+
+if count > 0 do
+    count = count - 1
+else
+    count = 0
+
+for i = 0; i < 10; i = i + 1
+    print(i)
