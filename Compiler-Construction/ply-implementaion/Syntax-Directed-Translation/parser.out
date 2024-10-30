@@ -1,0 +1,694 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    LPAREN
+    RPAREN
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statement_list
+Rule 2     statement_list -> statement
+Rule 3     statement_list -> statement_list statement
+Rule 4     statement -> expression_statement
+Rule 5     statement -> conditional_statement
+Rule 6     statement -> loop_statement
+Rule 7     expression_statement -> ID ASSIGN expression
+Rule 8     expression -> expression LESS term
+Rule 9     expression -> expression GREATER term
+Rule 10    expression -> expression EQUAL term
+Rule 11    expression -> expression PLUS term
+Rule 12    expression -> expression MINUS term
+Rule 13    expression -> term
+Rule 14    term -> term TIMES factor
+Rule 15    term -> term DIVIDE factor
+Rule 16    term -> factor
+Rule 17    factor -> NUMBER
+Rule 18    factor -> ID
+Rule 19    conditional_statement -> IF expression statement ELSE statement
+Rule 20    conditional_statement -> IF expression statement
+Rule 21    loop_statement -> WHILE expression statement
+
+Terminals, with rules where they appear
+
+ASSIGN               : 7
+DIVIDE               : 15
+ELSE                 : 19
+EQUAL                : 10
+GREATER              : 9
+ID                   : 7 18
+IF                   : 19 20
+LESS                 : 8
+LPAREN               : 
+MINUS                : 12
+NUMBER               : 17
+PLUS                 : 11
+RPAREN               : 
+TIMES                : 14
+WHILE                : 21
+error                : 
+
+Nonterminals, with rules where they appear
+
+conditional_statement : 5
+expression           : 7 8 9 10 11 12 19 20 21
+expression_statement : 4
+factor               : 14 15 16
+loop_statement       : 6
+program              : 0
+statement            : 2 3 19 19 20 21
+statement_list       : 1 3
+term                 : 8 9 10 11 12 13 14 15
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statement_list
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . expression_statement
+    (5) statement -> . conditional_statement
+    (6) statement -> . loop_statement
+    (7) expression_statement -> . ID ASSIGN expression
+    (19) conditional_statement -> . IF expression statement ELSE statement
+    (20) conditional_statement -> . IF expression statement
+    (21) loop_statement -> . WHILE expression statement
+
+    ID              shift and go to state 7
+    IF              shift and go to state 8
+    WHILE           shift and go to state 9
+
+    program                        shift and go to state 1
+    statement_list                 shift and go to state 2
+    statement                      shift and go to state 3
+    expression_statement           shift and go to state 4
+    conditional_statement          shift and go to state 5
+    loop_statement                 shift and go to state 6
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> statement_list .
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . expression_statement
+    (5) statement -> . conditional_statement
+    (6) statement -> . loop_statement
+    (7) expression_statement -> . ID ASSIGN expression
+    (19) conditional_statement -> . IF expression statement ELSE statement
+    (20) conditional_statement -> . IF expression statement
+    (21) loop_statement -> . WHILE expression statement
+
+    $end            reduce using rule 1 (program -> statement_list .)
+    ID              shift and go to state 7
+    IF              shift and go to state 8
+    WHILE           shift and go to state 9
+
+    statement                      shift and go to state 10
+    expression_statement           shift and go to state 4
+    conditional_statement          shift and go to state 5
+    loop_statement                 shift and go to state 6
+
+state 3
+
+    (2) statement_list -> statement .
+
+    ID              reduce using rule 2 (statement_list -> statement .)
+    IF              reduce using rule 2 (statement_list -> statement .)
+    WHILE           reduce using rule 2 (statement_list -> statement .)
+    $end            reduce using rule 2 (statement_list -> statement .)
+
+
+state 4
+
+    (4) statement -> expression_statement .
+
+    ID              reduce using rule 4 (statement -> expression_statement .)
+    IF              reduce using rule 4 (statement -> expression_statement .)
+    WHILE           reduce using rule 4 (statement -> expression_statement .)
+    $end            reduce using rule 4 (statement -> expression_statement .)
+    ELSE            reduce using rule 4 (statement -> expression_statement .)
+
+
+state 5
+
+    (5) statement -> conditional_statement .
+
+    ID              reduce using rule 5 (statement -> conditional_statement .)
+    IF              reduce using rule 5 (statement -> conditional_statement .)
+    WHILE           reduce using rule 5 (statement -> conditional_statement .)
+    $end            reduce using rule 5 (statement -> conditional_statement .)
+    ELSE            reduce using rule 5 (statement -> conditional_statement .)
+
+
+state 6
+
+    (6) statement -> loop_statement .
+
+    ID              reduce using rule 6 (statement -> loop_statement .)
+    IF              reduce using rule 6 (statement -> loop_statement .)
+    WHILE           reduce using rule 6 (statement -> loop_statement .)
+    $end            reduce using rule 6 (statement -> loop_statement .)
+    ELSE            reduce using rule 6 (statement -> loop_statement .)
+
+
+state 7
+
+    (7) expression_statement -> ID . ASSIGN expression
+
+    ASSIGN          shift and go to state 11
+
+
+state 8
+
+    (19) conditional_statement -> IF . expression statement ELSE statement
+    (20) conditional_statement -> IF . expression statement
+    (8) expression -> . expression LESS term
+    (9) expression -> . expression GREATER term
+    (10) expression -> . expression EQUAL term
+    (11) expression -> . expression PLUS term
+    (12) expression -> . expression MINUS term
+    (13) expression -> . term
+    (14) term -> . term TIMES factor
+    (15) term -> . term DIVIDE factor
+    (16) term -> . factor
+    (17) factor -> . NUMBER
+    (18) factor -> . ID
+
+    NUMBER          shift and go to state 15
+    ID              shift and go to state 16
+
+    expression                     shift and go to state 12
+    term                           shift and go to state 13
+    factor                         shift and go to state 14
+
+state 9
+
+    (21) loop_statement -> WHILE . expression statement
+    (8) expression -> . expression LESS term
+    (9) expression -> . expression GREATER term
+    (10) expression -> . expression EQUAL term
+    (11) expression -> . expression PLUS term
+    (12) expression -> . expression MINUS term
+    (13) expression -> . term
+    (14) term -> . term TIMES factor
+    (15) term -> . term DIVIDE factor
+    (16) term -> . factor
+    (17) factor -> . NUMBER
+    (18) factor -> . ID
+
+    NUMBER          shift and go to state 15
+    ID              shift and go to state 16
+
+    expression                     shift and go to state 17
+    term                           shift and go to state 13
+    factor                         shift and go to state 14
+
+state 10
+
+    (3) statement_list -> statement_list statement .
+
+    ID              reduce using rule 3 (statement_list -> statement_list statement .)
+    IF              reduce using rule 3 (statement_list -> statement_list statement .)
+    WHILE           reduce using rule 3 (statement_list -> statement_list statement .)
+    $end            reduce using rule 3 (statement_list -> statement_list statement .)
+
+
+state 11
+
+    (7) expression_statement -> ID ASSIGN . expression
+    (8) expression -> . expression LESS term
+    (9) expression -> . expression GREATER term
+    (10) expression -> . expression EQUAL term
+    (11) expression -> . expression PLUS term
+    (12) expression -> . expression MINUS term
+    (13) expression -> . term
+    (14) term -> . term TIMES factor
+    (15) term -> . term DIVIDE factor
+    (16) term -> . factor
+    (17) factor -> . NUMBER
+    (18) factor -> . ID
+
+    NUMBER          shift and go to state 15
+    ID              shift and go to state 16
+
+    expression                     shift and go to state 18
+    term                           shift and go to state 13
+    factor                         shift and go to state 14
+
+state 12
+
+    (19) conditional_statement -> IF expression . statement ELSE statement
+    (20) conditional_statement -> IF expression . statement
+    (8) expression -> expression . LESS term
+    (9) expression -> expression . GREATER term
+    (10) expression -> expression . EQUAL term
+    (11) expression -> expression . PLUS term
+    (12) expression -> expression . MINUS term
+    (4) statement -> . expression_statement
+    (5) statement -> . conditional_statement
+    (6) statement -> . loop_statement
+    (7) expression_statement -> . ID ASSIGN expression
+    (19) conditional_statement -> . IF expression statement ELSE statement
+    (20) conditional_statement -> . IF expression statement
+    (21) loop_statement -> . WHILE expression statement
+
+    LESS            shift and go to state 20
+    GREATER         shift and go to state 21
+    EQUAL           shift and go to state 22
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    ID              shift and go to state 7
+    IF              shift and go to state 8
+    WHILE           shift and go to state 9
+
+    statement                      shift and go to state 19
+    expression_statement           shift and go to state 4
+    conditional_statement          shift and go to state 5
+    loop_statement                 shift and go to state 6
+
+state 13
+
+    (13) expression -> term .
+    (14) term -> term . TIMES factor
+    (15) term -> term . DIVIDE factor
+
+    LESS            reduce using rule 13 (expression -> term .)
+    GREATER         reduce using rule 13 (expression -> term .)
+    EQUAL           reduce using rule 13 (expression -> term .)
+    PLUS            reduce using rule 13 (expression -> term .)
+    MINUS           reduce using rule 13 (expression -> term .)
+    ID              reduce using rule 13 (expression -> term .)
+    IF              reduce using rule 13 (expression -> term .)
+    WHILE           reduce using rule 13 (expression -> term .)
+    $end            reduce using rule 13 (expression -> term .)
+    ELSE            reduce using rule 13 (expression -> term .)
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 26
+
+
+state 14
+
+    (16) term -> factor .
+
+    TIMES           reduce using rule 16 (term -> factor .)
+    DIVIDE          reduce using rule 16 (term -> factor .)
+    LESS            reduce using rule 16 (term -> factor .)
+    GREATER         reduce using rule 16 (term -> factor .)
+    EQUAL           reduce using rule 16 (term -> factor .)
+    PLUS            reduce using rule 16 (term -> factor .)
+    MINUS           reduce using rule 16 (term -> factor .)
+    ID              reduce using rule 16 (term -> factor .)
+    IF              reduce using rule 16 (term -> factor .)
+    WHILE           reduce using rule 16 (term -> factor .)
+    $end            reduce using rule 16 (term -> factor .)
+    ELSE            reduce using rule 16 (term -> factor .)
+
+
+state 15
+
+    (17) factor -> NUMBER .
+
+    TIMES           reduce using rule 17 (factor -> NUMBER .)
+    DIVIDE          reduce using rule 17 (factor -> NUMBER .)
+    LESS            reduce using rule 17 (factor -> NUMBER .)
+    GREATER         reduce using rule 17 (factor -> NUMBER .)
+    EQUAL           reduce using rule 17 (factor -> NUMBER .)
+    PLUS            reduce using rule 17 (factor -> NUMBER .)
+    MINUS           reduce using rule 17 (factor -> NUMBER .)
+    ID              reduce using rule 17 (factor -> NUMBER .)
+    IF              reduce using rule 17 (factor -> NUMBER .)
+    WHILE           reduce using rule 17 (factor -> NUMBER .)
+    $end            reduce using rule 17 (factor -> NUMBER .)
+    ELSE            reduce using rule 17 (factor -> NUMBER .)
+
+
+state 16
+
+    (18) factor -> ID .
+
+    TIMES           reduce using rule 18 (factor -> ID .)
+    DIVIDE          reduce using rule 18 (factor -> ID .)
+    LESS            reduce using rule 18 (factor -> ID .)
+    GREATER         reduce using rule 18 (factor -> ID .)
+    EQUAL           reduce using rule 18 (factor -> ID .)
+    PLUS            reduce using rule 18 (factor -> ID .)
+    MINUS           reduce using rule 18 (factor -> ID .)
+    ID              reduce using rule 18 (factor -> ID .)
+    IF              reduce using rule 18 (factor -> ID .)
+    WHILE           reduce using rule 18 (factor -> ID .)
+    $end            reduce using rule 18 (factor -> ID .)
+    ELSE            reduce using rule 18 (factor -> ID .)
+
+
+state 17
+
+    (21) loop_statement -> WHILE expression . statement
+    (8) expression -> expression . LESS term
+    (9) expression -> expression . GREATER term
+    (10) expression -> expression . EQUAL term
+    (11) expression -> expression . PLUS term
+    (12) expression -> expression . MINUS term
+    (4) statement -> . expression_statement
+    (5) statement -> . conditional_statement
+    (6) statement -> . loop_statement
+    (7) expression_statement -> . ID ASSIGN expression
+    (19) conditional_statement -> . IF expression statement ELSE statement
+    (20) conditional_statement -> . IF expression statement
+    (21) loop_statement -> . WHILE expression statement
+
+    LESS            shift and go to state 20
+    GREATER         shift and go to state 21
+    EQUAL           shift and go to state 22
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    ID              shift and go to state 7
+    IF              shift and go to state 8
+    WHILE           shift and go to state 9
+
+    statement                      shift and go to state 27
+    expression_statement           shift and go to state 4
+    conditional_statement          shift and go to state 5
+    loop_statement                 shift and go to state 6
+
+state 18
+
+    (7) expression_statement -> ID ASSIGN expression .
+    (8) expression -> expression . LESS term
+    (9) expression -> expression . GREATER term
+    (10) expression -> expression . EQUAL term
+    (11) expression -> expression . PLUS term
+    (12) expression -> expression . MINUS term
+
+    ID              reduce using rule 7 (expression_statement -> ID ASSIGN expression .)
+    IF              reduce using rule 7 (expression_statement -> ID ASSIGN expression .)
+    WHILE           reduce using rule 7 (expression_statement -> ID ASSIGN expression .)
+    $end            reduce using rule 7 (expression_statement -> ID ASSIGN expression .)
+    ELSE            reduce using rule 7 (expression_statement -> ID ASSIGN expression .)
+    LESS            shift and go to state 20
+    GREATER         shift and go to state 21
+    EQUAL           shift and go to state 22
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+
+
+state 19
+
+    (19) conditional_statement -> IF expression statement . ELSE statement
+    (20) conditional_statement -> IF expression statement .
+
+  ! shift/reduce conflict for ELSE resolved as shift
+    ELSE            shift and go to state 28
+    ID              reduce using rule 20 (conditional_statement -> IF expression statement .)
+    IF              reduce using rule 20 (conditional_statement -> IF expression statement .)
+    WHILE           reduce using rule 20 (conditional_statement -> IF expression statement .)
+    $end            reduce using rule 20 (conditional_statement -> IF expression statement .)
+
+  ! ELSE            [ reduce using rule 20 (conditional_statement -> IF expression statement .) ]
+
+
+state 20
+
+    (8) expression -> expression LESS . term
+    (14) term -> . term TIMES factor
+    (15) term -> . term DIVIDE factor
+    (16) term -> . factor
+    (17) factor -> . NUMBER
+    (18) factor -> . ID
+
+    NUMBER          shift and go to state 15
+    ID              shift and go to state 16
+
+    term                           shift and go to state 29
+    factor                         shift and go to state 14
+
+state 21
+
+    (9) expression -> expression GREATER . term
+    (14) term -> . term TIMES factor
+    (15) term -> . term DIVIDE factor
+    (16) term -> . factor
+    (17) factor -> . NUMBER
+    (18) factor -> . ID
+
+    NUMBER          shift and go to state 15
+    ID              shift and go to state 16
+
+    term                           shift and go to state 30
+    factor                         shift and go to state 14
+
+state 22
+
+    (10) expression -> expression EQUAL . term
+    (14) term -> . term TIMES factor
+    (15) term -> . term DIVIDE factor
+    (16) term -> . factor
+    (17) factor -> . NUMBER
+    (18) factor -> . ID
+
+    NUMBER          shift and go to state 15
+    ID              shift and go to state 16
+
+    term                           shift and go to state 31
+    factor                         shift and go to state 14
+
+state 23
+
+    (11) expression -> expression PLUS . term
+    (14) term -> . term TIMES factor
+    (15) term -> . term DIVIDE factor
+    (16) term -> . factor
+    (17) factor -> . NUMBER
+    (18) factor -> . ID
+
+    NUMBER          shift and go to state 15
+    ID              shift and go to state 16
+
+    term                           shift and go to state 32
+    factor                         shift and go to state 14
+
+state 24
+
+    (12) expression -> expression MINUS . term
+    (14) term -> . term TIMES factor
+    (15) term -> . term DIVIDE factor
+    (16) term -> . factor
+    (17) factor -> . NUMBER
+    (18) factor -> . ID
+
+    NUMBER          shift and go to state 15
+    ID              shift and go to state 16
+
+    term                           shift and go to state 33
+    factor                         shift and go to state 14
+
+state 25
+
+    (14) term -> term TIMES . factor
+    (17) factor -> . NUMBER
+    (18) factor -> . ID
+
+    NUMBER          shift and go to state 15
+    ID              shift and go to state 16
+
+    factor                         shift and go to state 34
+
+state 26
+
+    (15) term -> term DIVIDE . factor
+    (17) factor -> . NUMBER
+    (18) factor -> . ID
+
+    NUMBER          shift and go to state 15
+    ID              shift and go to state 16
+
+    factor                         shift and go to state 35
+
+state 27
+
+    (21) loop_statement -> WHILE expression statement .
+
+    ID              reduce using rule 21 (loop_statement -> WHILE expression statement .)
+    IF              reduce using rule 21 (loop_statement -> WHILE expression statement .)
+    WHILE           reduce using rule 21 (loop_statement -> WHILE expression statement .)
+    $end            reduce using rule 21 (loop_statement -> WHILE expression statement .)
+    ELSE            reduce using rule 21 (loop_statement -> WHILE expression statement .)
+
+
+state 28
+
+    (19) conditional_statement -> IF expression statement ELSE . statement
+    (4) statement -> . expression_statement
+    (5) statement -> . conditional_statement
+    (6) statement -> . loop_statement
+    (7) expression_statement -> . ID ASSIGN expression
+    (19) conditional_statement -> . IF expression statement ELSE statement
+    (20) conditional_statement -> . IF expression statement
+    (21) loop_statement -> . WHILE expression statement
+
+    ID              shift and go to state 7
+    IF              shift and go to state 8
+    WHILE           shift and go to state 9
+
+    statement                      shift and go to state 36
+    expression_statement           shift and go to state 4
+    conditional_statement          shift and go to state 5
+    loop_statement                 shift and go to state 6
+
+state 29
+
+    (8) expression -> expression LESS term .
+    (14) term -> term . TIMES factor
+    (15) term -> term . DIVIDE factor
+
+    LESS            reduce using rule 8 (expression -> expression LESS term .)
+    GREATER         reduce using rule 8 (expression -> expression LESS term .)
+    EQUAL           reduce using rule 8 (expression -> expression LESS term .)
+    PLUS            reduce using rule 8 (expression -> expression LESS term .)
+    MINUS           reduce using rule 8 (expression -> expression LESS term .)
+    ID              reduce using rule 8 (expression -> expression LESS term .)
+    IF              reduce using rule 8 (expression -> expression LESS term .)
+    WHILE           reduce using rule 8 (expression -> expression LESS term .)
+    $end            reduce using rule 8 (expression -> expression LESS term .)
+    ELSE            reduce using rule 8 (expression -> expression LESS term .)
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 26
+
+
+state 30
+
+    (9) expression -> expression GREATER term .
+    (14) term -> term . TIMES factor
+    (15) term -> term . DIVIDE factor
+
+    LESS            reduce using rule 9 (expression -> expression GREATER term .)
+    GREATER         reduce using rule 9 (expression -> expression GREATER term .)
+    EQUAL           reduce using rule 9 (expression -> expression GREATER term .)
+    PLUS            reduce using rule 9 (expression -> expression GREATER term .)
+    MINUS           reduce using rule 9 (expression -> expression GREATER term .)
+    ID              reduce using rule 9 (expression -> expression GREATER term .)
+    IF              reduce using rule 9 (expression -> expression GREATER term .)
+    WHILE           reduce using rule 9 (expression -> expression GREATER term .)
+    $end            reduce using rule 9 (expression -> expression GREATER term .)
+    ELSE            reduce using rule 9 (expression -> expression GREATER term .)
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 26
+
+
+state 31
+
+    (10) expression -> expression EQUAL term .
+    (14) term -> term . TIMES factor
+    (15) term -> term . DIVIDE factor
+
+    LESS            reduce using rule 10 (expression -> expression EQUAL term .)
+    GREATER         reduce using rule 10 (expression -> expression EQUAL term .)
+    EQUAL           reduce using rule 10 (expression -> expression EQUAL term .)
+    PLUS            reduce using rule 10 (expression -> expression EQUAL term .)
+    MINUS           reduce using rule 10 (expression -> expression EQUAL term .)
+    ID              reduce using rule 10 (expression -> expression EQUAL term .)
+    IF              reduce using rule 10 (expression -> expression EQUAL term .)
+    WHILE           reduce using rule 10 (expression -> expression EQUAL term .)
+    $end            reduce using rule 10 (expression -> expression EQUAL term .)
+    ELSE            reduce using rule 10 (expression -> expression EQUAL term .)
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 26
+
+
+state 32
+
+    (11) expression -> expression PLUS term .
+    (14) term -> term . TIMES factor
+    (15) term -> term . DIVIDE factor
+
+    LESS            reduce using rule 11 (expression -> expression PLUS term .)
+    GREATER         reduce using rule 11 (expression -> expression PLUS term .)
+    EQUAL           reduce using rule 11 (expression -> expression PLUS term .)
+    PLUS            reduce using rule 11 (expression -> expression PLUS term .)
+    MINUS           reduce using rule 11 (expression -> expression PLUS term .)
+    ID              reduce using rule 11 (expression -> expression PLUS term .)
+    IF              reduce using rule 11 (expression -> expression PLUS term .)
+    WHILE           reduce using rule 11 (expression -> expression PLUS term .)
+    $end            reduce using rule 11 (expression -> expression PLUS term .)
+    ELSE            reduce using rule 11 (expression -> expression PLUS term .)
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 26
+
+
+state 33
+
+    (12) expression -> expression MINUS term .
+    (14) term -> term . TIMES factor
+    (15) term -> term . DIVIDE factor
+
+    LESS            reduce using rule 12 (expression -> expression MINUS term .)
+    GREATER         reduce using rule 12 (expression -> expression MINUS term .)
+    EQUAL           reduce using rule 12 (expression -> expression MINUS term .)
+    PLUS            reduce using rule 12 (expression -> expression MINUS term .)
+    MINUS           reduce using rule 12 (expression -> expression MINUS term .)
+    ID              reduce using rule 12 (expression -> expression MINUS term .)
+    IF              reduce using rule 12 (expression -> expression MINUS term .)
+    WHILE           reduce using rule 12 (expression -> expression MINUS term .)
+    $end            reduce using rule 12 (expression -> expression MINUS term .)
+    ELSE            reduce using rule 12 (expression -> expression MINUS term .)
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 26
+
+
+state 34
+
+    (14) term -> term TIMES factor .
+
+    TIMES           reduce using rule 14 (term -> term TIMES factor .)
+    DIVIDE          reduce using rule 14 (term -> term TIMES factor .)
+    LESS            reduce using rule 14 (term -> term TIMES factor .)
+    GREATER         reduce using rule 14 (term -> term TIMES factor .)
+    EQUAL           reduce using rule 14 (term -> term TIMES factor .)
+    PLUS            reduce using rule 14 (term -> term TIMES factor .)
+    MINUS           reduce using rule 14 (term -> term TIMES factor .)
+    ID              reduce using rule 14 (term -> term TIMES factor .)
+    IF              reduce using rule 14 (term -> term TIMES factor .)
+    WHILE           reduce using rule 14 (term -> term TIMES factor .)
+    $end            reduce using rule 14 (term -> term TIMES factor .)
+    ELSE            reduce using rule 14 (term -> term TIMES factor .)
+
+
+state 35
+
+    (15) term -> term DIVIDE factor .
+
+    TIMES           reduce using rule 15 (term -> term DIVIDE factor .)
+    DIVIDE          reduce using rule 15 (term -> term DIVIDE factor .)
+    LESS            reduce using rule 15 (term -> term DIVIDE factor .)
+    GREATER         reduce using rule 15 (term -> term DIVIDE factor .)
+    EQUAL           reduce using rule 15 (term -> term DIVIDE factor .)
+    PLUS            reduce using rule 15 (term -> term DIVIDE factor .)
+    MINUS           reduce using rule 15 (term -> term DIVIDE factor .)
+    ID              reduce using rule 15 (term -> term DIVIDE factor .)
+    IF              reduce using rule 15 (term -> term DIVIDE factor .)
+    WHILE           reduce using rule 15 (term -> term DIVIDE factor .)
+    $end            reduce using rule 15 (term -> term DIVIDE factor .)
+    ELSE            reduce using rule 15 (term -> term DIVIDE factor .)
+
+
+state 36
+
+    (19) conditional_statement -> IF expression statement ELSE statement .
+
+    ID              reduce using rule 19 (conditional_statement -> IF expression statement ELSE statement .)
+    IF              reduce using rule 19 (conditional_statement -> IF expression statement ELSE statement .)
+    WHILE           reduce using rule 19 (conditional_statement -> IF expression statement ELSE statement .)
+    $end            reduce using rule 19 (conditional_statement -> IF expression statement ELSE statement .)
+    ELSE            reduce using rule 19 (conditional_statement -> IF expression statement ELSE statement .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for ELSE in state 19 resolved as shift
