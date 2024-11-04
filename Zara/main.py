@@ -4,6 +4,8 @@ from week1.symbol_table import SymbolTable
 from week2.lexer import Lexer
 from week3.parser import Parser
 from week4.shift_reduce_parser import ShiftReduceParser
+from week5.semantic_analyzer import SemanticAnalyzer
+from week6.syntax_directed_translator import SyntaxDirectedTranslator
 
 def print_separator(title):
     print("\n" + "=" * 50)
@@ -66,6 +68,36 @@ def test_bottom_up_parser():
     parser.parse(tokens)
     print("Bottom-Up Parser Test Complete\n")
 
+def test_semantic_analyzer():
+    print_separator("Week 5: Semantic Analysis Test")
+    analyzer = SemanticAnalyzer(SymbolTable)
+    
+    # Load Zara code from test file
+    with open("tests/test_program.zara", "r") as file:
+        code = file.read()
+
+    # Tokenize and analyze Zara code
+    lexer = Lexer()
+    tokens = lexer.tokenize(code)
+    
+    # Run semantic analysis
+    analyzer.analyze(tokens)
+    print("Semantic Analysis Test Complete\n")
+
+def test_syntax_directed_translation():
+    print_separator("Week 6: Syntax-Directed Translation Test")
+    translator = SyntaxDirectedTranslator()
+
+    # Example translations
+    translator.translate_expression("x + 5 * y")
+    translator.translate_loop("x < 10", ["x = x + 1"])
+    translator.translate_sub_program("myFunction", ["x = 1", "y = x + 2"])
+
+    intermediate_code = translator.get_intermediate_code()
+    print("Generated Intermediate Code:")
+    print(intermediate_code)
+    print("Syntax-Directed Translation Test Complete\n")
+
 if __name__ == "__main__":
     print("\n" + "=" * 50)
     print("Zara Language Project - Test Runner")
@@ -76,6 +108,8 @@ if __name__ == "__main__":
     test_lexer()
     test_top_down_parser()
     test_bottom_up_parser()
+    test_semantic_analyzer()
+    test_syntax_directed_translation()
 
     print("\n" + "=" * 50)
     print("All Tests Completed")
